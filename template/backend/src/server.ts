@@ -1,8 +1,12 @@
-import { Router } from 'express'
-import { healthCheck } from './controllers/health.controller'
+import express from 'express'
+import routes from './routes'
 
-const router = Router()
+const app = express()
+const port = process.env.PORT || 3000
 
-router.get('/health', healthCheck)
+app.use(express.json())
+app.use(routes)
 
-export default router
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`)
+})
